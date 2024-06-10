@@ -2,12 +2,15 @@ import React from "react";
 import moment from "moment";
 import { getTypeOf, stringToDateCorrectFull } from "./utils";
 
-
-
 type IinputWrapperProps = {
     date?:string
     onChange?:(date:string)=>void
     focus?:boolean
+    // range pilihan tahun
+    rangeYear?:number
+
+    // apakah pilihan tahun berhenti di tahun sekarang
+    stopCurrentYear?:boolean|number
 }
 
 type IinputWrapperState = 
@@ -148,11 +151,28 @@ class InputWrapper<P extends IinputWrapperProps, S extends IinputWrapperState> e
 
     protected prepYears=()=>
     {
+        const props=this.props;
+        const rangeYear:number=props.rangeYear!==undefined?props.rangeYear:3;
         const years:any[] = [];        
         const tahun = parseInt(moment(this._value).format('YYYY'));
-        const mulai=tahun - 3;
-        const sampai = tahun + 4;
-        for(let i=mulai; i<sampai; i++)
+        const mulai=tahun - rangeYear;
+        let sampai = tahun + rangeYear;
+        let stopCurrentYear:number=sampai;
+        if(props.stopCurrentYear!==undefined)
+        {
+            if(typeof props.stopCurrentYear==="boolean")
+            {
+                stopCurrentYear=(new Date()).getFullYear();
+            }
+            else 
+            {
+                stopCurrentYear=props.stopCurrentYear;
+            }
+            stopCurrentYear=typeof stopCurrentYear==="number"?stopCurrentYear:sampai;
+        }
+        sampai=sampai>stopCurrentYear?stopCurrentYear:sampai;
+
+        for(let i=mulai; i<=sampai; i++)
         {
             const val=i.toString();
             const curr=i===parseInt(moment(this._value).format('YYYY'));

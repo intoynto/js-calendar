@@ -7,6 +7,10 @@ export type IInputTanggalProps = {
     name:string
     value?:string|null|undefined
     readonly?:boolean
+
+    rangeYear?:number
+    stopCurrentYear?:boolean|number
+
     onChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
 }
 
@@ -367,6 +371,8 @@ class InputTanggal<P extends IInputTanggalProps,S extends IInputTanggalState> ex
                         date={value_wrap}
                         onChange={this.onChangeDate}
                         focus={focus}
+                        rangeYear={props.rangeYear}
+                        stopCurrentYear={props.stopCurrentYear}
                     />             
                 </div>
             </div>

@@ -45,7 +45,7 @@ class Comp<P extends Iprops,S extends Istate> extends React.Component<P,S>
                 <Container asForm>           
                     <div>Selected Value : {data.tanggal }</div>            
                     <div className="flex gap-1.5 pt-2">
-                        <div><InputTanggal name="tanggal" value={data.tanggal} onChange={this.onCh} /></div>
+                        <div><InputTanggal name="tanggal" value={data.tanggal} onChange={this.onCh} rangeYear={45} stopCurrentYear={1990} /></div>
                         <div><input type="text" placeholder="another input" /></div>
                     </div>                    
                     <div className="pt-10"><button>Test Submit</button></div>
