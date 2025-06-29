@@ -1,6 +1,6 @@
 {
   "name": "intoy-calendar",
-  "version": "1.0.4-beta-5",
+  "version": "1.0.4-beta-6",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "license": "MIT",

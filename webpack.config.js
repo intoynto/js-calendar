@@ -103,7 +103,7 @@ module.exports=function(env,args)
         conf.plugins.push(
             // Include only English, Indonesia locales
             //new webpack.ContextReplacementPlugin(/moment[/\\]locale$/,/^\.\/(en|id)$/)
-            new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|id/)
+            new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /id/)
         );
     }
 
