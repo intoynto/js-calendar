@@ -1,10 +1,12 @@
 const path=require("path");
 const TerserWebpackPlugin=require("terser-webpack-plugin");
 const clean=require("./web.dev/clean");
+const webpack=require("webpack");
 
 module.exports=function(env,args)
 {
     clean.doRemoveFolder("./dist");// remove dir
+    const isProd=args && args.mode && args.mode==="production"?true:false;
     
     const dev={
         MODUL_NAME:'InputTanggal', // class Component
@@ -14,6 +16,7 @@ module.exports=function(env,args)
     const entry={};
     entry[`${dev.MODUL_NAME}`]=path.resolve(__dirname,"src/index.tsx");
 
+    console.log("======= Webpack mode. Prod = ",isProd);
     console.log('======= ENTRY =========');
     console.log(entry);
 
@@ -47,6 +50,7 @@ module.exports=function(env,args)
             minimize:true,
             minimizer:[],
         },        
+        plugins:[],
     };
 
     const rules=[];
@@ -93,6 +97,16 @@ module.exports=function(env,args)
             extractComments:false,                
         })
     );
+
+    if(isProd)
+    {
+        conf.plugins.push(
+            new webpack.ContextReplacementPlugin(
+                /moment[/\\]locale$/,
+                /^\.\/(en|id)$/ // Include only English, Indonesia locales
+            )
+        );
+    }
 
     return conf;
 }
