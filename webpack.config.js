@@ -43,7 +43,7 @@ module.exports=function(env,args)
         externals:{
             "react":"react",
             "react-dom":"react-dom",
-            "moment":"moment",
+            //"moment":"moment",
         },    
         module:{},
         optimization:{
