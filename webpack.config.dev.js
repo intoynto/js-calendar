@@ -90,7 +90,21 @@ module.exports=function(env,args)
                 }
             },
             'postcss-loader',           
-            'sass-loader'
+            //'sass-loader'
+            {
+                loader:'sass-loader',
+                options:{
+                    sassOptions:{
+                        silenceDeprecations:[
+                            'legacy-js-api',
+                            'import',
+                            'function-units',
+                            'slash-div',
+                            'global-builtin'
+                        ],
+                    }
+                },
+            },
         ],
     });
 

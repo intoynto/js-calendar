@@ -1,5 +1,8 @@
 import React from "react";
-import moment from "moment";
+//import moment from "moment";
+const moment=require("moment");
+require("moment/locale/id");
+
 import { getTypeOf, stringToDateCorrectFull } from "./utils";
 
 type IinputWrapperProps = {

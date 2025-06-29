@@ -101,10 +101,9 @@ module.exports=function(env,args)
     if(isProd)
     {
         conf.plugins.push(
-            new webpack.ContextReplacementPlugin(
-                /moment[/\\]locale$/,
-                /^\.\/(en|id)$/ // Include only English, Indonesia locales
-            )
+            // Include only English, Indonesia locales
+            //new webpack.ContextReplacementPlugin(/moment[/\\]locale$/,/^\.\/(en|id)$/)
+            new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|id/)
         );
     }
 
